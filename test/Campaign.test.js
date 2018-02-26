@@ -1,5 +1,6 @@
 const assert = require('assert');
 const ganache = require('ganache-cli');
+const provider = ganache.provider();
 const Web3 = require('web3');
 const web3 = new Web3(ganache.provider());
 
@@ -29,6 +30,7 @@ factory = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
 console.log(accounts);
 console.log(factory);
 console.log(web3);
+factory.setProvider(provider);
 await factory.methods.createCampaign('100').send({
         from:accounts[0],
         gas: '1000000'
